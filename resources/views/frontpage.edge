@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Avatar Customizr :: Tech Summit Ogun</title>
+     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+    {{ css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')}}
+
+    {{ css('main.css') }}
+    {{ script('html2canvas.min.js')}}
+    {{ script('download.js')}}
+    {{ script('jquery.js')}}
+
+    <style>
+    .layer {
+      position: relative;
+      bottom: 310px;
+      height: auto;
+      width: 40%;
+      padding-top: 20px;
+      /*border-radius: 100%;*/
+      margin: auto;
+      text-align: center;
+      overflow: hidden;
+      /*background: red;*/
+    }
+
+    #img-holder {
+      width: 50px;
+      height: 50px;
+      margin: auto;
+    }
+
+    .layout {
+      width: 100%;
+      height: 100%;
+    }
+    @media screen and (max-width: 320px) {
+       .layer {
+        position: relative;
+        bottom: 240px;
+        height: 150px;
+        width: 40%;
+        padding-top: 20px;
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        /*background: orange;*/
+      }
+    }
+
+    @media screen and (min-width: 350px) {
+       .layer {
+        position: relative;
+        bottom: 270px;
+        height: 150px;
+        width: 40%;
+        padding-top: 20px;
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        /*background: orange;*/
+      }
+    }
+
+      @media screen and (min-width: 400px) {
+       .layer {
+        position: relative;
+        bottom: 311px;
+        height: 180px;
+        width: 40%;
+        padding-top: 20px;
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        /*background: orange;*/
+      }
+    }
+
+    @media screen and (min-width: 700px) and (max-width: 1000px) {
+      .layer {
+        position: relative;
+        bottom: 560px;
+        height: 300px;
+        width: 40%;
+        padding-top: 20px;
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        /*background: orange;*/
+      }
+    }
+
+     @media screen and (min-width: 1024px) {
+      .layer {
+        position: relative;
+        bottom: 250px;
+        height: 150px;
+        width: 40%;
+        padding-top: 20px;
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        /*background: pink;*/
+      }
+    }
+
+    </style>
+    <script>
+
+    $(function(){
+      $('.img-uploader').click(function(e) {
+        $('#file-upload').click()
+      })
+
+      $('#export').click(function() {
+        html2canvas(document.querySelector("#card-layout")).then( function(canvas) {
+          download(canvas.toDataURL(), "avatar.png", "image/png")
+        });
+      })
+
+      $('#file-upload').change(function() {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var preview = document.getElementById('img');
+          preview.innerHTML = '<img src="'+e.target.result+'" style="width: 100%;height: 100%;border-radius: 100%;" />'
+        }
+        reader.readAsDataURL(this.files[0]);
+      })
+    })
+    </script>
+
+  </head>
+  <body>
+
+  <div class="col-md-4 col-md-offset-4" style="height: 100%">
+   <br/><br/>
+   <div id="card-layout" >
+  <img src="lets-code-layout.jpeg" class="layout"/>
+   <div class="avatar img-uploader layer" id="img">
+        <img src="plus.svg" id="img-holder" ></img>
+   </div>
+   </div>
+   <div style="position: relative;bottom: 150px;margin: auto;text-align:center">
+    <button id="export" class="btn btn-default btn-lg">Export Picture</button>
+   </div>
+  <br>
+
+  <div class="">
+    <form class="" enctype="multipart/form-data" method="post">
+      <input type="file" id="file-upload" style="height: 1px;">
+    </form>
+  </div>
+
+</div>
+
+  </body>
+</html>

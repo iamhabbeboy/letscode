@@ -15,4 +15,4 @@
 
 const Route = use('Route')
 
-Route.on('/').render('index')
+Route.on('/').render('frontpage')
